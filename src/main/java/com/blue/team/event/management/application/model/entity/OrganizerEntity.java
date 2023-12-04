@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @Builder
@@ -19,6 +22,7 @@ public class OrganizerEntity {
     private String email;
     @Column(nullable = false, unique = true)
     private String contactNumber;
-
+    @OneToMany(mappedBy = "organizer")
+    private List<EventEntity> events;
 }
 

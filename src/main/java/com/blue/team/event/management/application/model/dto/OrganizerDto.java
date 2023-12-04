@@ -1,9 +1,10 @@
 package com.blue.team.event.management.application.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -16,5 +17,6 @@ public class OrganizerDto {
     private String email;
     @NotNull
     private String contactNumber;
+    private List<EventDto> events;
 
 }
