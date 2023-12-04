@@ -1,25 +1,23 @@
 package com.blue.team.event.management.application.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 
 @Entity
 @Data
 @Builder
+@Table(name = "organizer")
 public class OrganizerEntity {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "full_name", nullable = false)
+    @Column(nullable = false)
     private String fullName;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(name = "contact_number", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String contactNumber;
 
 }

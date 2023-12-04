@@ -1,5 +1,6 @@
 package com.blue.team.event.management.application.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
