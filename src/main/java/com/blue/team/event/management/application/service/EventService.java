@@ -25,5 +25,7 @@ public class EventService {
         return modelMapper.eventEntityToDto(repository.save(entity));
     }
 
-
+    public EventDto read(Long id) {
+        return modelMapper.eventEntityToDto(repository.findById(id).orElseThrow(EntityNotFoundException::new));
+    }
 }
