@@ -1,7 +1,5 @@
 package com.blue.team.event.management.application.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonRootName;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,11 +8,8 @@ import lombok.Data;
 public class OrganizerDto {
 
     private Long id;
-    @NotNull
     private String fullName;
-    @NotNull
     private String email;
-    @NotNull
     private String contactNumber;
 
 }
