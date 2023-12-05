@@ -12,7 +12,6 @@ import java.util.List;
 @Component
 public class ModelMapper {
 
-
     public EventDto eventEntityToDto(EventEntity entity) {
         return EventDto.builder()
                 .date(entity.getDate())
@@ -25,7 +24,6 @@ public class ModelMapper {
                 .organizer(organizerEntityToDto(entity.getOrganizer()))
                 .build();
     }
-
 
     public EventEntity eventDtoToEntity(EventDto dto) {
         return EventEntity.builder()
