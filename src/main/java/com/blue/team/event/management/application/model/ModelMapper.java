@@ -53,6 +53,6 @@ public class ModelMapper {
     }
 
     public OrganizerDto organizerEntityToDto(OrganizerEntity entity) {
-        return OrganizerDto.builder().events(eventEntitiesToDtos(entity.getEvents())).fullName(entity.getFullName()).id(entity.getId()).email(entity.getEmail()).contactNumber(entity.getContactNumber()).build();
+        return OrganizerDto.builder().fullName(entity.getFullName()).id(entity.getId()).email(entity.getEmail()).contactNumber(entity.getContactNumber()).build();
     }
 }

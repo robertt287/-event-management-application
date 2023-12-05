@@ -20,7 +20,7 @@ public class EventService {
 
     public EventDto create(EventDto dto) {
         EventEntity entity = modelMapper.eventDtoToEntity(dto);
-        entity.setOrganizer(organizerRepository.findById(dto.getOrganizerId()).orElseThrow(EntityNotFoundException::new));
+        entity.setOrganizer(organizerRepository.findById(dto.getOrganizer().getId()).orElseThrow(EntityNotFoundException::new));
 
         return modelMapper.eventEntityToDto(repository.save(entity));
     }

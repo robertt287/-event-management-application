@@ -1,8 +1,10 @@
 package com.blue.team.event.management.application.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -11,12 +13,13 @@ import java.time.LocalTime;
 @Data
 @Builder
 @Table(name = "event")
+@NoArgsConstructor
+@AllArgsConstructor
 public class EventEntity {
 
     @Id
     @GeneratedValue
     private Long id;
-
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -32,4 +35,5 @@ public class EventEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "organizer_id")
     private OrganizerEntity organizer;
+
 }

@@ -27,7 +27,7 @@ public class EventDto {
     @Min(1)
     @NotNull
     private Integer maximumParticipants;
-
+    @NotNull
     private OrganizerDto organizer;
-    private Long organizerId;
+
 }
