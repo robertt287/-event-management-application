@@ -1,5 +1,6 @@
 package com.blue.team.event.management.application.service;
-import com.blue.team.event.management.application.exception.MaxParticipantsException;
+
+import com.blue.team.event.management.application.exception.MaxParticipantsReachedException;
 import com.blue.team.event.management.application.model.ModelMapper;
 import com.blue.team.event.management.application.model.dto.ParticipantDto;
 import com.blue.team.event.management.application.model.entity.EventEntity;
@@ -18,12 +19,12 @@ public class ParticipantService {
     private final ModelMapper modelMapper;
     private final EventRepository eventRepository;
 
-    public ParticipantDto create (ParticipantDto dto) throws MaxParticipantsException {
+    public ParticipantDto create(ParticipantDto dto) {
         ParticipantEntity entity = modelMapper.participantDtoToEntity(dto);
         EventEntity eventEntity = eventRepository.findById(dto.getEventId()).orElseThrow(EntityNotFoundException::new);
 
         if (eventEntity.getParticipants().size() >= eventEntity.getMaximumParticipants()) {
-         throw new MaxParticipantsException();
+            throw new MaxParticipantsReachedException();
         }
         entity.setEvent(eventEntity);
 
