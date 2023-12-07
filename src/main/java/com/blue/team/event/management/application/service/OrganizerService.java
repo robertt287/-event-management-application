@@ -16,6 +16,4 @@ public class OrganizerService {
     public OrganizerDto create(OrganizerDto dto) {
         return modelMapper.organizerEntityToDto(repository.save(modelMapper.organizerDtoToEntity(dto)));
     }
-
-
 }
