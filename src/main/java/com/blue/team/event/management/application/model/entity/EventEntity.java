@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -35,5 +36,6 @@ public class EventEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "organizer_id")
     private OrganizerEntity organizer;
-
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
+    private List < ParticipantEntity > participants;
 }
