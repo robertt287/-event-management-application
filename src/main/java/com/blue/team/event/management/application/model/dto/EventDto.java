@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -29,5 +30,6 @@ public class EventDto {
     private Integer maximumParticipants;
     @NotNull
     private OrganizerDto organizer;
+    private List< ParticipantDto > participants;
 
 }

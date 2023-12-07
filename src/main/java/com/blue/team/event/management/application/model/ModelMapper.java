@@ -2,8 +2,10 @@ package com.blue.team.event.management.application.model;
 
 import com.blue.team.event.management.application.model.dto.EventDto;
 import com.blue.team.event.management.application.model.dto.OrganizerDto;
+import com.blue.team.event.management.application.model.dto.ParticipantDto;
 import com.blue.team.event.management.application.model.entity.EventEntity;
 import com.blue.team.event.management.application.model.entity.OrganizerEntity;
+import com.blue.team.event.management.application.model.entity.ParticipantEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -22,6 +24,7 @@ public class ModelMapper {
                 .location(entity.getLocation())
                 .maximumParticipants(entity.getMaximumParticipants())
                 .organizer(organizerEntityToDto(entity.getOrganizer()))
+                .participants(participantEntitiesToDtos(entity.getParticipants()))
                 .build();
     }
 
@@ -52,5 +55,22 @@ public class ModelMapper {
 
     public OrganizerDto organizerEntityToDto(OrganizerEntity entity) {
         return OrganizerDto.builder().fullName(entity.getFullName()).id(entity.getId()).email(entity.getEmail()).contactNumber(entity.getContactNumber()).build();
+    }
+
+    public ParticipantEntity participantDtoToEntity(ParticipantDto dto) {
+        return ParticipantEntity.builder().contactNumber(dto.getContactNumber()).email(dto.getEmail()).id(dto.getId()).fullName(dto.getFullName()).build();
+    }
+
+    public ParticipantDto participantEntityToDto(ParticipantEntity entity) {
+        return ParticipantDto.builder().contactNumber(entity.getContactNumber()).email(entity.getEmail()).id(entity.getId()).fullName(entity.getFullName()).build();
+
+    }
+
+    public List < ParticipantDto > participantEntitiesToDtos(List < ParticipantEntity > entities) {
+            if (entities == null)
+            return Collections.emptyList();
+        return entities.stream()
+                .map(this::participantEntityToDto)
+                .toList();
     }
 }
