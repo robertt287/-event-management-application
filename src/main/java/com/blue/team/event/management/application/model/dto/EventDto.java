@@ -11,7 +11,6 @@ import java.util.List;
 
 @Data
 @Builder
-
 public class EventDto {
 
     private Long id;
@@ -31,5 +30,4 @@ public class EventDto {
     @NotNull
     private OrganizerDto organizer;
     private List< ParticipantDto > participants;
-
 }

@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException;
 
 @RestController
 @RequestMapping("/participant")
 @RequiredArgsConstructor
-
 public class ParticipantController {
+
     private final ParticipantService service;
 
     @PostMapping
@@ -24,8 +23,7 @@ public class ParticipantController {
         try {
             return ResponseEntity.ok(service.create(dto));
         } catch (MaxParticipantsException e) {
-          return  ResponseEntity.status(400).body(e.getMessage());
+            return ResponseEntity.status(400).body(e.getMessage());
         }
-
     }
 }

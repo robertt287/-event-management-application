@@ -28,6 +28,5 @@ public class OrganizerEntity {
     private String email;
     @Column(nullable = false, unique = true)
     private String contactNumber;
-
 }
 
