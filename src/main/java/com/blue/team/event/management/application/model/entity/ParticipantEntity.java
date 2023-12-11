@@ -20,9 +20,9 @@ public class ParticipantEntity {
     private Long id;
     @Column(nullable = false)
     private String fullName;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String contactNumber;
     @ManyToOne (optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id")
