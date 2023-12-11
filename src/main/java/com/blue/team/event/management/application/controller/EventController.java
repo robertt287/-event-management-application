@@ -31,9 +31,9 @@ public class EventController {
 
     @GetMapping
     public List<EventDto> read(@RequestParam(required = false) Occurence occurence,
-                               @RequestParam (required = false)String nameKeyword,
+                               @RequestParam(required = false) String nameKeyword,
                                @RequestParam(required = false) String location,
-                               @RequestParam (required = false, defaultValue = "DATE")SortBy sortBy,
+                               @RequestParam(required = false, defaultValue = "DATE") SortBy sortBy,
                                @RequestParam(required = false, defaultValue = "ASC") Sort.Direction sortDirection) {
         return service.read(occurence, nameKeyword, location, sortBy, sortDirection);
     }
@@ -43,4 +43,10 @@ public class EventController {
     public EventDto update(@RequestBody EventDto dto) {
         return service.update(dto);
     }
-}
+
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") Long id){
+        EventService.delete(id);
+        return "Deleted successfully.";
+}}
