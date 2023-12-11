@@ -80,4 +80,8 @@ public class EventService {
         entity = repository.save(entity);
         return modelMapper.eventEntityToDto(entity);
     }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }
