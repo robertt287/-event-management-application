@@ -46,7 +46,8 @@ public class EventController {
 
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Long id){
-        EventService.delete(id);
+    public String delete(@PathVariable("id") Long id) {
+        service.delete(id);
         return "Deleted successfully.";
-}}
+    }
+}
