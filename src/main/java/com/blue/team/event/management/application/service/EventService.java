@@ -23,7 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventService {
 
-    private static final EventRepository repository = null;
+    private final EventRepository repository;
     private final ModelMapper modelMapper;
     private final OrganizerRepository organizerRepository;
     private final EventSpecifications specifications;
