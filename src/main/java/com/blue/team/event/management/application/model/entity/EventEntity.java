@@ -37,5 +37,5 @@ public class EventEntity {
     @JoinColumn(name = "organizer_id")
     private OrganizerEntity organizer;
     @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
-    private List < ParticipantEntity > participants;
+    private List<ParticipantEntity> participants;
 }

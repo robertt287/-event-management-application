@@ -18,6 +18,7 @@ public class ParticipantService {
     private final ParticipantRepository repository;
     private final ModelMapper modelMapper;
     private final EventRepository eventRepository;
+    private final EmailSender emailSender;
 
     public ParticipantDto create(ParticipantDto dto) {
         ParticipantEntity entity = modelMapper.participantDtoToEntity(dto);
@@ -27,6 +28,7 @@ public class ParticipantService {
             throw new MaxParticipantsReachedException();
         }
         entity.setEvent(eventEntity);
+        emailSender.registrationConfirmation(entity, eventEntity);
 
         return modelMapper.participantEntityToDto(repository.save(entity));
 
