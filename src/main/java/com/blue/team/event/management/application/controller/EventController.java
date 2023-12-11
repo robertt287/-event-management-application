@@ -37,4 +37,10 @@ public class EventController {
                                @RequestParam(required = false, defaultValue = "ASC") Sort.Direction sortDirection) {
         return service.read(occurence, nameKeyword, location, sortBy, sortDirection);
     }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public EventDto update(@RequestBody EventDto dto) {
+        return service.update(dto);
+    }
 }
