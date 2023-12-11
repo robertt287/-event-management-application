@@ -23,7 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventService {
 
-    private final EventRepository repository;
+    private static final EventRepository repository = null;
     private final ModelMapper modelMapper;
     private final OrganizerRepository organizerRepository;
     private final EventSpecifications specifications;
@@ -79,5 +79,9 @@ public class EventService {
 
         entity = repository.save(entity);
         return modelMapper.eventEntityToDto(entity);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }
