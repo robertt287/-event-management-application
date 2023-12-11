@@ -32,7 +32,7 @@ public class EventService {
         EventEntity entity = modelMapper.eventDtoToEntity(dto);
         entity.setOrganizer(organizerRepository.findById(dto.getOrganizer().getId()).orElseThrow(EntityNotFoundException::new));
 
-        log.info("Event {} was saved", entity.getName());
+        log.info("Event {} was saved.", entity.getName());
 
         return modelMapper.eventEntityToDto(repository.save(entity));
     }
@@ -75,7 +75,7 @@ public class EventService {
         entity.setDate(dto.getDate());
         entity.setTime(dto.getTime());
 
-        log.info("Event {} was updated and saved", entity.getName());
+        log.info("Event {} was updated and saved.", entity.getName());
 
         entity = repository.save(entity);
         return modelMapper.eventEntityToDto(entity);

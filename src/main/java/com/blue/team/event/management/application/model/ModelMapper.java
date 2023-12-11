@@ -1,9 +1,11 @@
 package com.blue.team.event.management.application.model;
 
 import com.blue.team.event.management.application.model.dto.EventDto;
+import com.blue.team.event.management.application.model.dto.NotificationDto;
 import com.blue.team.event.management.application.model.dto.OrganizerDto;
 import com.blue.team.event.management.application.model.dto.ParticipantDto;
 import com.blue.team.event.management.application.model.entity.EventEntity;
+import com.blue.team.event.management.application.model.entity.NotificationEntity;
 import com.blue.team.event.management.application.model.entity.OrganizerEntity;
 import com.blue.team.event.management.application.model.entity.ParticipantEntity;
 import org.springframework.stereotype.Component;
@@ -72,5 +74,13 @@ public class ModelMapper {
         return entities.stream()
                 .map(this::participantEntityToDto)
                 .toList();
+    }
+
+    public NotificationEntity notificationDtoToEntity(NotificationDto dto){
+        return NotificationEntity.builder().message(dto.getMessage()).build();
+    }
+
+    public NotificationDto notificationEntityToDto(NotificationEntity entity){
+        return NotificationDto.builder().id(entity.getId()).eventId(entity.getEvent().getId()).message(entity.getMessage()).createdAt(entity.getCreatedAt()).build();
     }
 }
