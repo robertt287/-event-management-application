@@ -1,7 +1,7 @@
 package com.blue.team.event.management.application.service;
 
 import com.blue.team.event.management.application.model.ModelMapper;
-import com.blue.team.event.management.application.model.dto.NotificationDto;
+import com.blue.team.event.management.application.model.dto.WriteNotificationDto;
 import com.blue.team.event.management.application.model.entity.EventEntity;
 import com.blue.team.event.management.application.model.entity.NotificationEntity;
 import com.blue.team.event.management.application.model.entity.ParticipantEntity;
@@ -27,8 +27,8 @@ public class NotificationService {
     @Value("${event.notification.message.body}")
     private String eventNotificationMessageBody;
 
-    public NotificationDto create(NotificationDto dto) {
-        NotificationEntity entity = modelMapper.notificationDtoToEntity(dto);
+    public Long create(WriteNotificationDto dto) {
+        NotificationEntity entity = modelMapper.writeNotificationDtoToEntity(dto);
         entity.setCreatedAt(LocalDateTime.now());
 
         EventEntity eventEntity = eventRepository.findById(dto.getEventId()).orElseThrow(EntityNotFoundException::new);
@@ -42,10 +42,10 @@ public class NotificationService {
                 .map(ParticipantEntity::getContactNumber)
                 .toList(), messageBody);
 
-        return modelMapper.notificationEntityToDto(repository.save(entity));
+        return modelMapper.notificationEntityToReadDto(repository.save(entity)).getId();
     }
 
-    private String getMessageBody(NotificationDto dto, EventEntity eventEntity) {
+    private String getMessageBody(WriteNotificationDto dto, EventEntity eventEntity) {
         if (dto.getMessage() != null && !dto.getMessage().isBlank())
             return dto.getMessage()
                     .replace("@eventName", eventEntity.getName())

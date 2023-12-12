@@ -24,8 +24,14 @@ public class SmsSender {
 
     public void sendSms(List<String> phoneNumbers, String messageBody) {
         Twilio.init(twilioAccountSid, twilioAuthToken);
-        phoneNumbers.forEach(phoneNumber -> Message.creator(new PhoneNumber(phoneNumber),
-                new PhoneNumber(twilioFromNumber), messageBody).create());
-        log.info("Sms {} was sent", messageBody );
+        phoneNumbers.forEach(phoneNumber -> {
+            try {
+                Message.creator(new PhoneNumber(phoneNumber),
+                        new PhoneNumber(twilioFromNumber), messageBody).create();
+                log.info("Sent SMS to {}.", phoneNumber);
+            } catch (RuntimeException e) {
+                log.error(e.getMessage(), e);
+            }
+        });
     }
 }

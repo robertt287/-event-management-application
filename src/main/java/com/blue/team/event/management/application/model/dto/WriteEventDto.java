@@ -2,21 +2,20 @@ package com.blue.team.event.management.application.model.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 @Data
 @Builder
-public class EventDto {
-
-    private Long id;
+public class WriteEventDto {
     @NotNull
     private String location;
-    @NotNull
+    @NotNull(message = "Name must not be null.")
+    @Size(min = 2, message = "Name must be at least 2 characters long.")
     private String name;
     @NotNull
     private LocalDate date;
@@ -28,7 +27,5 @@ public class EventDto {
     @NotNull
     private Integer maximumParticipants;
     @NotNull
-    private OrganizerDto organizer;
-    private List< ParticipantDto > participants;
-    private List< NotificationDto > notifications;
+    private Long organizerId;
 }
