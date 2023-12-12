@@ -16,7 +16,7 @@ public class WriteParticipantDto {
     @Pattern(regexp = ".+@.+\\..+", message = "Email address must be valid.")
     private String email;
     @NotNull(message = "Phone number must not be null.")
-    @Pattern(regexp = "\\+?[0-9 ]*", message = "Phone number must be valid.")
+    @Pattern(regexp = "\\+?[0-9]*", message = "Phone number must be of format : +407xxxxxxxx")
     private String contactNumber;
     @NotNull
     private Long eventId;
