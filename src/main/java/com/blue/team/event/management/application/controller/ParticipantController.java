@@ -4,6 +4,7 @@ import com.blue.team.event.management.application.model.dto.ParticipantDto;
 import com.blue.team.event.management.application.service.ParticipantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class ParticipantController {
 
     private final ParticipantService service;
 
+    @Transactional
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ParticipantDto create(@RequestBody ParticipantDto dto) {

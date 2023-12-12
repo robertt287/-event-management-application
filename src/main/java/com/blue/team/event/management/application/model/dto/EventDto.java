@@ -30,4 +30,5 @@ public class EventDto {
     @NotNull
     private OrganizerDto organizer;
     private List< ParticipantDto > participants;
+    private List< NotificationDto > notifications;
 }

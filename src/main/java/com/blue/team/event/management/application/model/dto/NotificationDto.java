@@ -14,8 +14,6 @@ public class NotificationDto {
     private Long id;
     @NotNull
     private Long eventId;
-    @NotNull
     private String message;
-    @NotNull
     private LocalDateTime createdAt;
 }

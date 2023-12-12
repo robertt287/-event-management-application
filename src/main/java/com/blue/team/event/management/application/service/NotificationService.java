@@ -34,11 +34,25 @@ public class NotificationService {
         EventEntity eventEntity = eventRepository.findById(dto.getEventId()).orElseThrow(EntityNotFoundException::new);
         entity.setEvent(eventEntity);
 
+        String messageBody = getMessageBody(dto, eventEntity);
+
+        entity.setMessage(messageBody);
+
         smsSender.sendSms(eventEntity.getParticipants().stream()
                 .map(ParticipantEntity::getContactNumber)
-                .toList(), String.format(eventNotificationMessageBody, eventEntity.getName(), eventEntity.getLocation(), eventEntity.getDate(), eventEntity.getTime())
-        );
+                .toList(), messageBody);
 
         return modelMapper.notificationEntityToDto(repository.save(entity));
+    }
+
+    private String getMessageBody(NotificationDto dto, EventEntity eventEntity) {
+        if (dto.getMessage() != null && !dto.getMessage().isBlank())
+            return dto.getMessage()
+                    .replace("@eventName", eventEntity.getName())
+                    .replace("@eventLocation", eventEntity.getLocation())
+                    .replace("@eventDate", eventEntity.getDate().toString())
+                    .replace("@eventTime", eventEntity.getTime().toString());
+        else
+            return String.format(eventNotificationMessageBody, eventEntity.getName(), eventEntity.getLocation(), eventEntity.getDate(), eventEntity.getTime());
     }
 }

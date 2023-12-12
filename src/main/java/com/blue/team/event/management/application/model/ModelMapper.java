@@ -27,7 +27,14 @@ public class ModelMapper {
                 .maximumParticipants(entity.getMaximumParticipants())
                 .organizer(organizerEntityToDto(entity.getOrganizer()))
                 .participants(participantEntitiesToDtos(entity.getParticipants()))
+                .notifications(notificationEntitiesToDtos(entity.getNotifications()))
                 .build();
+    }
+
+    private List<NotificationDto> notificationEntitiesToDtos(List<NotificationEntity> entities) {
+        if (entities == null)
+            return Collections.emptyList();
+        return entities.stream().map(this::notificationEntityToDto).toList();
     }
 
     public EventEntity eventDtoToEntity(EventDto dto) {
@@ -68,19 +75,19 @@ public class ModelMapper {
 
     }
 
-    public List < ParticipantDto > participantEntitiesToDtos(List < ParticipantEntity > entities) {
-            if (entities == null)
+    public List<ParticipantDto> participantEntitiesToDtos(List<ParticipantEntity> entities) {
+        if (entities == null)
             return Collections.emptyList();
         return entities.stream()
                 .map(this::participantEntityToDto)
                 .toList();
     }
 
-    public NotificationEntity notificationDtoToEntity(NotificationDto dto){
+    public NotificationEntity notificationDtoToEntity(NotificationDto dto) {
         return NotificationEntity.builder().message(dto.getMessage()).build();
     }
 
-    public NotificationDto notificationEntityToDto(NotificationEntity entity){
+    public NotificationDto notificationEntityToDto(NotificationEntity entity) {
         return NotificationDto.builder().id(entity.getId()).eventId(entity.getEvent().getId()).message(entity.getMessage()).createdAt(entity.getCreatedAt()).build();
     }
 }

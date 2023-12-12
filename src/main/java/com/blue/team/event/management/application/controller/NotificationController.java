@@ -4,6 +4,7 @@ import com.blue.team.event.management.application.model.dto.NotificationDto;
 import com.blue.team.event.management.application.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class NotificationController {
 
     private final NotificationService service;
 
+    @Transactional
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public NotificationDto create(@RequestBody NotificationDto dto) {
