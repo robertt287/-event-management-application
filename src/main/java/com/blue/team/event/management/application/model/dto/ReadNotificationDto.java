@@ -9,8 +9,10 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class ReadNotificationDto {
-
+    @NotNull(message = "Id must not be null.")
     private Long id;
+    @NotNull(message = "Message must not be null.")
     private String message;
+    @NotNull(message = "Date and time of notification creation must not be null.")
     private LocalDateTime createdAt;
 }

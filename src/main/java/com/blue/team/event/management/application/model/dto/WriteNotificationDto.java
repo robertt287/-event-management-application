@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 public class WriteNotificationDto {
-    @NotNull
+    @NotNull(message = "Event id must not be null.")
     private Long eventId;
     private String message;
 }

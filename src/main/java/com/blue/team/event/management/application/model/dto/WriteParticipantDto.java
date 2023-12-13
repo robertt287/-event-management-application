@@ -18,6 +18,6 @@ public class WriteParticipantDto {
     @NotNull(message = "Phone number must not be null.")
     @Pattern(regexp = "\\+?[0-9]*", message = "Phone number must be of format : +407xxxxxxxx")
     private String contactNumber;
-    @NotNull
+    @NotNull(message = "Event id must not be null.")
     private Long eventId;
 }
