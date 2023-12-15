@@ -20,7 +20,7 @@ An application to manage event details, registrations and notifications.
     - after executing the notification creation, a SMS will be sent to your phone number
 - You can perform Update and Delete operations
    
-### The team
+### The BlueCheese Team
 
 - [Dorina Brahasteanu](https://github.com/DorinaBr)
 - [Gabriel Florentin Pascu](https://github.com/GabiPascu)
