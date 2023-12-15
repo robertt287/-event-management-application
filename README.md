@@ -10,9 +10,10 @@ An application to manage event details, registrations and notifications.
 - Create a participant with:
     - valid email address (an email will be sent to it)
     - valid phone number which must be verified by Twilio
-            - sign up at https://www.twilio.com/try-twilio
       
+            - sign up at https://www.twilio.com/try-twilio
             - verify your phone number
+      
 - Create a notification
     - you can choose to write your custom message or leave that field empty which will generate a default message
     - after executing the notification creation, a SMS will be sent to your phone number
