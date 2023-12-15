@@ -6,19 +6,19 @@ An application to manage event details, registrations and notifications.
 
 - Access http://localhost:8080/swagger-ui/index.html
 - Create an organizer
-- Create an event with the organizer id set at the previous step
+- Create an event with the organizer id generated at the previous step
 - Create a participant with:
     - valid email address (an email will be sent to it)
     - valid phone number which must be verified by Twilio
       
             - sign up at https://www.twilio.com/try-twilio
-            - verify your phone number
+            - verify the phone number
       
 - Create a notification
-    - with a valid event id (set by you previously)
+    - with a valid event id (generated previously)
     - you can choose to write your custom message or leave that field empty which will generate a default message
-    - after executing the notification creation, a SMS will be sent to your phone number
-- You can perform Update and Delete operations
+    - after executing the notification creation, a SMS will be sent to the participant's phone number
+- You can perform Read, Update and Delete operations on event
    
 ### The BlueCheese Team
 
