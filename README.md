@@ -1,6 +1,9 @@
 # Event Management Application
 
-An application to manage event details, registrations and notifications.
+### Description
+This project purposes were to learn how to work as a team, and make use of our newly acquired knowledge about REST APIs.
+
+The application can be used by a local community organization which hosts various events throughout the year, including workshops, seminars, and social gatherings. For that, we have built this system to manage event details, registrations and notifications.
 
 ### How to use
 
