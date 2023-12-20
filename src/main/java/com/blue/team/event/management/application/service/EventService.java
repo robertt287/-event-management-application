@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 @RequiredArgsConstructor
 public class EventService {
@@ -39,7 +38,6 @@ public class EventService {
     }
 
     public List<ReadEventDto> read(Occurence occurence, String nameKeyword, String location, SortBy sortBy, Sort.Direction sortDirection) {
-
         Specification<EventEntity> specification = Specification.where(null);
 
         if (occurence != null) {
@@ -62,7 +60,6 @@ public class EventService {
     }
 
     public void update(Long id, WriteEventDto dto) {
-
         EventEntity entity = repository.findById(id).orElseThrow(EntityNotFoundException::new);
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
