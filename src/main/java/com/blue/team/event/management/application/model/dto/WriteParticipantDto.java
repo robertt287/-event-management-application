@@ -13,7 +13,7 @@ public class WriteParticipantDto {
     @Size(min = 2, message = "Name must be at least 2 characters long.")
     private String fullName;
     @NotNull(message = "Email address must not be null.")
-    @Pattern(regexp = ".+@.+\\..+", message = "Email address must be valid.")
+    @Pattern(regexp = ".+@.+\\..+", message = "Email address must contain '@' and '.'.")
     private String email;
     @NotNull(message = "Phone number must not be null.")
     @Pattern(regexp = "\\+407\\d{8}", message = "Phone number must be of format : +407xxxxxxxx")
