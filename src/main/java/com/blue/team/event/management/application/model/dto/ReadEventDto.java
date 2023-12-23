@@ -32,7 +32,7 @@ public class ReadEventDto {
     @Min(value = 1, message = "The participants list size must pe greater than 1.")
     @NotNull(message = "The participants list must not be null.")
     private List<ReadParticipantDto> participants;
-    @Min(value = 1, message = "The notification list size must pe greater than 1.")
+    @Min(value = 1, message = "The notification list size must be greater than 1.")
     @NotNull(message = "The notification list size must not be null.")
     private List<ReadNotificationDto> notifications;
 }
