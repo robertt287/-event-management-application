@@ -30,7 +30,7 @@ public class ParticipantService {
         entity.setEvent(eventEntity);
         emailSender.registrationConfirmation(entity, eventEntity);
 
-        return modelMapper.participantEntityToReadDto(repository.save(entity)).getId();
+        return repository.save(entity).getId();
 
     }
 }

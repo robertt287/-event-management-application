@@ -30,7 +30,7 @@ public class EventService {
         EventEntity entity = modelMapper.writeEventDtoToEntity(dto);
         entity.setOrganizer(organizerRepository.findById(dto.getOrganizerId()).orElseThrow(EntityNotFoundException::new));
 
-        return modelMapper.eventEntityToReadDto(repository.save(entity)).getId();
+        return repository.save(entity).getId();
     }
 
     public ReadEventDto read(Long id) {

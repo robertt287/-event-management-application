@@ -15,6 +15,6 @@ public class OrganizerService {
     private final ModelMapper modelMapper;
 
     public Long create(WriteOrganizerDto dto) {
-        return modelMapper.organizerEntityToReadDto(repository.save(modelMapper.writeOrganizerDtoToEntity(dto))).getId();
+        return repository.save(modelMapper.writeOrganizerDtoToEntity(dto)).getId();
     }
 }

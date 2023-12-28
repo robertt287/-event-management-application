@@ -42,7 +42,7 @@ public class NotificationService {
                 .map(ParticipantEntity::getContactNumber)
                 .toList(), messageBody);
 
-        return modelMapper.notificationEntityToReadDto(repository.save(entity)).getId();
+        return repository.save(entity).getId();
     }
 
     private String getMessageBody(WriteNotificationDto dto, EventEntity eventEntity) {
