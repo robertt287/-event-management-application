@@ -4,18 +4,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Data
 @Builder
-public class NotificationDto {
-
-    private Long id;
-    @NotNull
+public class WriteNotificationDto {
+    @NotNull(message = "Event id must not be null.")
     private Long eventId;
-    @NotNull
     private String message;
-    @NotNull
-    private LocalDateTime createdAt;
 }

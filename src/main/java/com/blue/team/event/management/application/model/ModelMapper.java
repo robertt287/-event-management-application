@@ -1,9 +1,6 @@
 package com.blue.team.event.management.application.model;
 
-import com.blue.team.event.management.application.model.dto.EventDto;
-import com.blue.team.event.management.application.model.dto.NotificationDto;
-import com.blue.team.event.management.application.model.dto.OrganizerDto;
-import com.blue.team.event.management.application.model.dto.ParticipantDto;
+import com.blue.team.event.management.application.model.dto.*;
 import com.blue.team.event.management.application.model.entity.EventEntity;
 import com.blue.team.event.management.application.model.entity.NotificationEntity;
 import com.blue.team.event.management.application.model.entity.OrganizerEntity;
@@ -16,8 +13,8 @@ import java.util.List;
 @Component
 public class ModelMapper {
 
-    public EventDto eventEntityToDto(EventEntity entity) {
-        return EventDto.builder()
+    public ReadEventDto eventEntityToReadDto(EventEntity entity) {
+        return ReadEventDto.builder()
                 .date(entity.getDate())
                 .time(entity.getTime())
                 .name(entity.getName())
@@ -25,62 +22,67 @@ public class ModelMapper {
                 .description(entity.getDescription())
                 .location(entity.getLocation())
                 .maximumParticipants(entity.getMaximumParticipants())
-                .organizer(organizerEntityToDto(entity.getOrganizer()))
-                .participants(participantEntitiesToDtos(entity.getParticipants()))
+                .organizer(organizerEntityToReadDto(entity.getOrganizer()))
+                .participants(participantEntitiesToReadDtos(entity.getParticipants()))
+                .notifications(notificationEntitiesToDtos(entity.getNotifications()))
                 .build();
     }
 
-    public EventEntity eventDtoToEntity(EventDto dto) {
+    private List<ReadNotificationDto> notificationEntitiesToDtos(List<NotificationEntity> entities) {
+        if (entities == null)
+            return Collections.emptyList();
+        return entities.stream().map(this::notificationEntityToReadDto).toList();
+    }
+
+    public EventEntity writeEventDtoToEntity(WriteEventDto dto) {
         return EventEntity.builder()
                 .date(dto.getDate())
                 .time(dto.getTime())
                 .name(dto.getName())
-                .id(dto.getId())
                 .description(dto.getDescription())
                 .location(dto.getLocation())
                 .maximumParticipants(dto.getMaximumParticipants())
-                .organizer(organizerDtoToEntity(dto.getOrganizer()))
                 .build();
     }
 
-    public List<EventDto> eventEntitiesToDtos(List<EventEntity> entities) {
+    public List<ReadEventDto> eventEntitiesToReadDtos(List<EventEntity> entities) {
         if (entities == null)
             return Collections.emptyList();
         return entities.stream()
-                .map(this::eventEntityToDto)
+                .map(this::eventEntityToReadDto)
                 .toList();
     }
 
-    public OrganizerEntity organizerDtoToEntity(OrganizerDto dto) {
-        return OrganizerEntity.builder().contactNumber(dto.getContactNumber()).email(dto.getEmail()).id(dto.getId()).fullName(dto.getFullName()).build();
+    public OrganizerEntity writeOrganizerDtoToEntity(WriteOrganizerDto dto) {
+        return OrganizerEntity.builder().contactNumber(dto.getContactNumber()).email(dto.getEmail()).fullName(dto.getFullName()).build();
     }
 
-    public OrganizerDto organizerEntityToDto(OrganizerEntity entity) {
-        return OrganizerDto.builder().fullName(entity.getFullName()).id(entity.getId()).email(entity.getEmail()).contactNumber(entity.getContactNumber()).build();
+    public ReadOrganizerDto organizerEntityToReadDto(OrganizerEntity entity) {
+        return ReadOrganizerDto.builder().fullName(entity.getFullName()).id(entity.getId()).email(entity.getEmail()).contactNumber(entity.getContactNumber()).build();
     }
 
-    public ParticipantEntity participantDtoToEntity(ParticipantDto dto) {
-        return ParticipantEntity.builder().contactNumber(dto.getContactNumber()).email(dto.getEmail()).id(dto.getId()).fullName(dto.getFullName()).build();
+    public ParticipantEntity writeParticipantDtoToEntity(WriteParticipantDto dto) {
+        return ParticipantEntity.builder().contactNumber(dto.getContactNumber()).email(dto.getEmail()).fullName(dto.getFullName()).build();
     }
 
-    public ParticipantDto participantEntityToDto(ParticipantEntity entity) {
-        return ParticipantDto.builder().contactNumber(entity.getContactNumber()).email(entity.getEmail()).id(entity.getId()).fullName(entity.getFullName()).build();
+    public ReadParticipantDto participantEntityToReadDto(ParticipantEntity entity) {
+        return ReadParticipantDto.builder().contactNumber(entity.getContactNumber()).email(entity.getEmail()).id(entity.getId()).fullName(entity.getFullName()).build();
 
     }
 
-    public List < ParticipantDto > participantEntitiesToDtos(List < ParticipantEntity > entities) {
-            if (entities == null)
+    public List<ReadParticipantDto> participantEntitiesToReadDtos(List<ParticipantEntity> entities) {
+        if (entities == null)
             return Collections.emptyList();
         return entities.stream()
-                .map(this::participantEntityToDto)
+                .map(this::participantEntityToReadDto)
                 .toList();
     }
 
-    public NotificationEntity notificationDtoToEntity(NotificationDto dto){
+    public NotificationEntity writeNotificationDtoToEntity(WriteNotificationDto dto) {
         return NotificationEntity.builder().message(dto.getMessage()).build();
     }
 
-    public NotificationDto notificationEntityToDto(NotificationEntity entity){
-        return NotificationDto.builder().id(entity.getId()).eventId(entity.getEvent().getId()).message(entity.getMessage()).createdAt(entity.getCreatedAt()).build();
+    public ReadNotificationDto notificationEntityToReadDto(NotificationEntity entity) {
+        return ReadNotificationDto.builder().id(entity.getId()).id(entity.getEvent().getId()).message(entity.getMessage()).createdAt(entity.getCreatedAt()).build();
     }
 }

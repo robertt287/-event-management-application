@@ -1,4 +1,4 @@
-package com.blue.team.event.management.application.model.dto;
+package com.blue.team.event.management.application.model.dto.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

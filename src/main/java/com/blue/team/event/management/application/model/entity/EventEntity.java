@@ -36,6 +36,8 @@ public class EventEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "organizer_id")
     private OrganizerEntity organizer;
-    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER)
-    private List < ParticipantEntity > participants;
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<ParticipantEntity> participants;
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<NotificationEntity> notifications;
 }
